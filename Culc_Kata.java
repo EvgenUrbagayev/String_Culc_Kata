@@ -9,7 +9,8 @@ public class Culc_Kata {
         try {
             Scanner scanner = new Scanner((System.in));
             System.out.println("Введите выражение: ");
-            String string = scanner.nextLine();
+            String myString = scanner.nextLine();
+            String string = myString.replaceAll(" ", "");
 
             String str = getOperation(string);
 
