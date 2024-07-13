@@ -27,16 +27,22 @@ public class Culc_Kata {
 
                 int a = Integer.parseInt(arab1);
                 int b = Integer.parseInt(arab2);
-                int res = culculate(a, b, str);
-                String resArab = String.valueOf(res);
+                if (a > 0 && b > 0){
+                    int res = culculate(a, b, str);
+                    String resArab = String.valueOf(res);
+                    String resRoman = getArabToRoman(resArab);
+                    System.out.println(resRoman);
+                }else System.out.println("Введите числа больше 0");
 
-                String resRoman = getArabToRoman(resArab);
-                System.out.println(resRoman);
+
             } else {
                 int a = Integer.parseInt(arr[0]);
                 int b = Integer.parseInt(arr[1]);
-                int res = culculate(a, b, str);
-                System.out.println(res);
+                if (a > 0 && b > 0){
+                    int res = culculate(a, b, str);
+                    System.out.println(res);
+                } else System.out.println("Введите числа больше 0");
+
 
             }
         }catch (NumberFormatException e){
