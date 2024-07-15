@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -5,8 +6,7 @@ public class Culc_Kata {
 
 
 
-    public static void main(String[] args) {
-        try {
+    public static void main(String[] args) throws Exception {
             Scanner scanner = new Scanner((System.in));
             System.out.println("Введите выражение: ");
             String myString = scanner.nextLine();
@@ -22,17 +22,21 @@ public class Culc_Kata {
                     && arr[1].equals("I")) || arr[1].equals("II") || arr[1].equals("III") || arr[1].equals("IV")
                     || arr[1].equals("V") || arr[1].equals("VI") || arr[1].equals("VII") || arr[1].equals("VIII")
                     || arr[1].equals("IX") || arr[1].equals("X")) {
+
                 String arab1 = getRomanToArab(arr[0]);
                 String arab2 = getRomanToArab(arr[1]);
 
                 int a = Integer.parseInt(arab1);
                 int b = Integer.parseInt(arab2);
+
                 if (a > 0 && b > 0){
                     int res = culculate(a, b, str);
                     String resArab = String.valueOf(res);
                     String resRoman = getArabToRoman(resArab);
                     System.out.println(resRoman);
-                }else System.out.println("Введите числа больше 0");
+                }else {
+                    throw new Exception();
+                }
 
 
             } else {
@@ -41,46 +45,41 @@ public class Culc_Kata {
                 if (a > 0 && b > 0){
                     int res = culculate(a, b, str);
                     System.out.println(res);
-                } else System.out.println("Введите числа больше 0");
+                } else {
+                    throw new Exception();
+                }
 
 
             }
-        }catch (NumberFormatException e){
-            System.out.println("Вычисления производятся только либо с арабскими цифрами от 1 до 10, либо с римскими от I до X! Введите пожалуйста либо арабские, либо римские цифры!!!");
-        }
+    }
 
+    public static String getRomanToArab(String arr1) throws Exception {
 
+        if (arr1.equals("I")) {
+            arr1 = String.valueOf(RomanToArab.I.getTranslation());
+        }else if (arr1.equals("II")) {
+            arr1 = String.valueOf(RomanToArab.II.getTranslation());
+        }else if (arr1.equals("III")) {
+            arr1 = String.valueOf(RomanToArab.III.getTranslation());
+        }else if (arr1.equals("IV")) {
+            arr1 = String.valueOf(RomanToArab.IV.getTranslation());
+        }else if (arr1.equals("V")) {
+            arr1 = String.valueOf(RomanToArab.V.getTranslation());
+        }else if (arr1.equals("VI")) {
+            arr1 = String.valueOf(RomanToArab.VI.getTranslation());
+        }else if (arr1.equals("VII")) {
+            arr1 = String.valueOf(RomanToArab.VII.getTranslation());
+        }else if (arr1.equals("VIII")) {
+            arr1 = String.valueOf(RomanToArab.VIII.getTranslation());
+        }else if (arr1.equals("IX")) {
+            arr1 = String.valueOf(RomanToArab.IX.getTranslation());
+        }else if (arr1.equals("X")) {
+            arr1 = String.valueOf(RomanToArab.X.getTranslation());
+        }else {
+            throw new Exception();
         }
+        return arr1;
 
-    public static String getRomanToArab(String arr1){
-        try {
-            if (arr1.equals("I")) {
-                arr1 = String.valueOf(RomanToArab.I.getTranslation());
-            }else if (arr1.equals("II")) {
-                arr1 = String.valueOf(RomanToArab.II.getTranslation());
-            }else if (arr1.equals("III")) {
-                arr1 = String.valueOf(RomanToArab.III.getTranslation());
-            }else if (arr1.equals("IV")) {
-                arr1 = String.valueOf(RomanToArab.IV.getTranslation());
-            }else if (arr1.equals("V")) {
-                arr1 = String.valueOf(RomanToArab.V.getTranslation());
-            }else if (arr1.equals("VI")) {
-                arr1 = String.valueOf(RomanToArab.VI.getTranslation());
-            }else if (arr1.equals("VII")) {
-                arr1 = String.valueOf(RomanToArab.VII.getTranslation());
-            }else if (arr1.equals("VIII")) {
-                arr1 = String.valueOf(RomanToArab.VIII.getTranslation());
-            }else if (arr1.equals("IX")) {
-                arr1 = String.valueOf(RomanToArab.IX.getTranslation());
-            }else if (arr1.equals("X")) {
-                arr1 = String.valueOf(RomanToArab.X.getTranslation());
-            }else{
-                System.out.println("Введите либо два римских, либо два арабских числа");
-            }
-            return arr1;
-        } catch (InputMismatchException e) {
-            throw new InputMismatchException("Неверный формат данных!");
-        }
     }
     public static int culculate(int num1, int num2, String oper) {
         int result = 0;
@@ -97,20 +96,22 @@ public class Culc_Kata {
         return result;
     }
 
-    public static String getOperation(String string) {
+    public static String getOperation(String string) throws Exception {
         String[] a = {"+", "-", "*", "/"};
         String operation = " ";
         for (int i = 0; i < a.length; i++) {
             if (string.contains(a[i])) {
                 operation = a[i];
                 break;
+            } else {
+                throw new Exception();
             }
 
         }
 
         return operation;
     }
-    public static String getArabToRoman(String arab){
+    public static String getArabToRoman(String arab) throws Exception {
         switch (arab){
                 case "1":
                     arab = String.valueOf(RomanToArab.valueOf("I"));
@@ -414,7 +415,7 @@ public class Culc_Kata {
                     break;
 
             default:
-                throw new IllegalStateException("Unexpected value: " + arab);
+                throw new Exception();
         }
 
         return arab;
