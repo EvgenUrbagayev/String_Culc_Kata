@@ -96,15 +96,13 @@ public class Culc_Kata {
         return result;
     }
 
-    public static String getOperation(String string) throws Exception {
+    public static String getOperation(String string) {
         String[] a = {"+", "-", "*", "/"};
         String operation = " ";
         for (int i = 0; i < a.length; i++) {
             if (string.contains(a[i])) {
                 operation = a[i];
                 break;
-            } else {
-                throw new Exception();
             }
 
         }
