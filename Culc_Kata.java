@@ -1,21 +1,29 @@
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Culc_Kata {
 
 
 
     public static void main(String[] args) throws Exception {
-            Scanner scanner = new Scanner((System.in));
-            System.out.println("Введите выражение: ");
-            String myString = scanner.nextLine();
-            String string = myString.replaceAll(" ", "");
 
+        Scanner scanner = new Scanner((System.in));
+        System.out.println("Введите выражение: ");
+        String myString = scanner.nextLine();
+        String string = myString.replaceAll(" ", "");
+
+        StringTokenizer tokenizer = new StringTokenizer(string, "+-*/");
+        int tokenCount = tokenizer.countTokens();
+        String[] stringArray = new String[tokenCount];
+        for (int i=0; i < tokenCount; i++){
+            stringArray[i] = tokenizer.nextToken();
+        }
+        int lenght = stringArray.length;
+        if (lenght == 2){
             String str = getOperation(string);
-
             String[] arr = string.split("[+\\-*/]");
-
             if (arr[0].equals("I") || arr[0].equals("II") || arr[0].equals("III") || arr[0].equals("IV")
                     || arr[0].equals("V") || arr[0].equals("VI") || arr[0].equals("VII") || arr[0].equals("VIII")
                     || arr[0].equals("IX") || (arr[0].equals("X")
@@ -37,8 +45,6 @@ public class Culc_Kata {
                 }else {
                     throw new Exception();
                 }
-
-
             } else {
                 int a = Integer.parseInt(arr[0]);
                 int b = Integer.parseInt(arr[1]);
@@ -48,9 +54,11 @@ public class Culc_Kata {
                 } else {
                     throw new Exception();
                 }
-
-
             }
+        }else {
+            throw new Exception();
+        }
+
     }
 
     public static String getRomanToArab(String arr1) throws Exception {
